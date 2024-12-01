@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  static const String routeName="Login";
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register Screen'),
+
+        title: const Text('Login Screen'),
       ),
       body: Center(
         child: Column(
@@ -15,7 +17,7 @@ class LoginScreen extends StatelessWidget {
           children: [
             const TextField(
               decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: 'Your username',
               ),
             ),
             const SizedBox(height: 16),
