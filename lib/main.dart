@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:free_talk/providers/login/login_provider.dart';
+import 'package:free_talk/services/helper/cache_helper.dart';
+import 'package:free_talk/views/login/login_views.dart';
+import 'package:free_talk/views/onboarding/onboarding_views.dart';
+import 'package:provider/provider.dart';
+import 'package:free_talk/providers/onboarding/onboarding_provider.dart';
+import 'package:free_talk/views/routes.dart';
 
-import 'presentations/screens/login/login.dart';
-
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
+  bool isOpened = CacheHelper.getData(key: 'opened') ?? false;
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => OnboardingProvider()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+      ],
+      child: MyApp(isOpened: isOpened,),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key,required this.isOpened});
+  final bool isOpened;
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        LoginScreen.routeName: (context)=>const LoginScreen(),
-
-      },
-      initialRoute: LoginScreen.routeName,
+    return  MaterialApp(
+      home:  isOpened? const LoginScreen():const OnboardingScreen(),
+      onGenerateRoute: AppRoutes.generateRoute,
       debugShowCheckedModeBanner: false,
     );
   }
