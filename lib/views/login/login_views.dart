@@ -12,7 +12,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<LoginProvider>(context);
 
-
     return Scaffold(
       backgroundColor: AppColors.gulfBlue,
       resizeToAvoidBottomInset: true, // Ensures layout adjusts for keyboard
