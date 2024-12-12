@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:free_talk/providers/register/register_provider.dart';
 import 'package:free_talk/providers/splash/splash_providers.dart';
+import 'package:free_talk/views/register/register_views.dart';
 import 'package:free_talk/views/slpash/splash_views.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +17,7 @@ class AppRoutes {
   static const String home = '/home';
   static const String login = '/login';
   static const String splash = '/splash';
+  static const String register = '/register';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -46,6 +49,13 @@ class AppRoutes {
           builder: (_) => ChangeNotifierProvider(
             create: (_) => SplashProviders(),
             child: const SplashScreen(),
+          ),
+        );
+      case register:
+        return MaterialPageRoute(
+          builder: (_) => ChangeNotifierProvider(
+            create: (_) => RegisterProviders(),
+            child: const RegisterViews(),
           ),
         );
 
