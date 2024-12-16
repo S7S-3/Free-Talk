@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:free_talk/views/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:free_talk/utils/colors/color.dart';
 import 'package:free_talk/providers/login/login_provider.dart';
@@ -11,6 +12,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<LoginProvider>(context);
+
 
     return Scaffold(
       backgroundColor: AppColors.gulfBlue,
@@ -141,28 +143,34 @@ class LoginScreen extends StatelessWidget {
                       CustomButton(
                         text: 'Login',
                         height: 50,
+                        txtColor: AppColors.white,
                         onPressed: () async {
                           provider.login(provider.emailController.text,
                               provider.passwordController.text,context);
                         },
                         btnColor: AppColors.gulfBlue,
                       ),
-                      const Row(
+                       Row(
                         children: [
-                          Text("If you don’t have an account",
+                          const Text("If you don’t have an account",
                               style: TextStyle(
                                 fontSize: 21,
                                 fontWeight: FontWeight.w700,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 9,
                           ),
-                          Text(
-                            "Register",
-                            style: TextStyle(
-                                fontSize: 21,
-                                fontWeight: FontWeight.w700,
-                                decoration: TextDecoration.underline),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pushNamed(context, AppRoutes.register);
+                            },
+                            child: const Text(
+                              "Register",
+                              style: TextStyle(
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w700,
+                                  decoration: TextDecoration.underline),
+                            ),
                           )
                         ],
                       )

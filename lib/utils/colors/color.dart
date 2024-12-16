@@ -21,4 +21,5 @@ abstract class AppColors {
   static const Color doveGray= Color(0xff666666);
   static const Color boulder= Color(0xff7A7A7A);
   static const Color gulfBlue= Color(0xff03045E);
+  static const Color darkBlue= Color(0xff0608C4);
 }
