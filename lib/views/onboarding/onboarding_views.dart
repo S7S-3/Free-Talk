@@ -33,7 +33,7 @@ class OnboardingScreen extends StatelessWidget {
             flex: 49,
             child: PageView.builder(
               controller: boardController,
-              onPageChanged:provider.updateCurrentPage,
+              onPageChanged: provider.updateCurrentPage,
               itemBuilder: (context, index) => CustomBoardingItem(
                 title: boarding[index].title,
                 subTitle: boarding[index].body,
@@ -61,7 +61,7 @@ class OnboardingScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     if (provider.currentPage < boarding.length - 1) {
                       boardController.nextPage(
                         duration: const Duration(milliseconds: 300),

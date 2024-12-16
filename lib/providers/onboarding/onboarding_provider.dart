@@ -16,20 +16,20 @@ class OnboardingProvider extends ChangeNotifier {
   // Boarding data
   final List<BoardingModel> boarding = [
     BoardingModel(
-      title: 'Hello',
-      body: 'Hello, I’m Mick, Hand talk’s virtual sign language translator and I’m here to help you',
-      btnText: "Next"
-    ),
+        title: 'Hello',
+        body:
+            'Hello, I’m Mick, Hand talk’s virtual sign language translator and I’m here to help you',
+        btnText: "Next"),
     BoardingModel(
-      title: 'About the app',
-      body: 'Globally awarded, the Hand Talk app assists in learning and understanding sign language through artificial intelligence. It currently supports ASL (American Sign Language)',
-      btnText: "Next"
-    ),
+        title: 'About the app',
+        body:
+            'Globally awarded, the Hand Talk app assists in learning and understanding sign language through artificial intelligence. It currently supports ASL (American Sign Language)',
+        btnText: "Next"),
     BoardingModel(
-      title: 'Connect Effortlessly',
-      body: 'The app uses Artificial Intelligence to translate. This means that the characters learn and improve translations with sentences, contexts, and feedback provided. That\'s why sometimes the translations may not be perfect.',
-      btnText: "Next"
-    ),
+        title: 'Connect Effortlessly',
+        body:
+            'The app uses Artificial Intelligence to translate. This means that the characters learn and improve translations with sentences, contexts, and feedback provided. That\'s why sometimes the translations may not be perfect.',
+        btnText: "Next"),
   ];
 
   // Method to handle page changes
@@ -55,7 +55,11 @@ class OnboardingProvider extends ChangeNotifier {
     _isCompleted = true;
     notifyListeners();
     CacheHelper.saveData(key: 'opened', value: true);
-    Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login,(route) => false,);
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      AppRoutes.login,
+      (route) => false,
+    );
   }
 
   @override

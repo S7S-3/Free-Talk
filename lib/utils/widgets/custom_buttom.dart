@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import '../colors/color.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton(
-      {super.key,
-        required this.text,
-      this.function});
+  const CustomButton({super.key, required this.text, this.function});
   final String text;
   final GestureTapCallback? function;
 

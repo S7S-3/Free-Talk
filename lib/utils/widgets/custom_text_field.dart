@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import '../colors/color.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({super.key,
-  this.controller,
-  this.label});
+  CustomTextField({super.key, this.controller, this.label});
   TextEditingController? controller;
   String? label;
 
@@ -25,19 +23,31 @@ class CustomTextField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: AppColors.darkBlue,width: 3,strokeAlign: BorderSide.strokeAlignCenter),
+          borderSide: const BorderSide(
+              color: AppColors.darkBlue,
+              width: 3,
+              strokeAlign: BorderSide.strokeAlignCenter),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: AppColors.darkBlue,width: 3,strokeAlign: BorderSide.strokeAlignCenter),
+          borderSide: const BorderSide(
+              color: AppColors.darkBlue,
+              width: 3,
+              strokeAlign: BorderSide.strokeAlignCenter),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: AppColors.darkBlue,width: 3,strokeAlign: BorderSide.strokeAlignCenter),
+          borderSide: const BorderSide(
+              color: AppColors.darkBlue,
+              width: 3,
+              strokeAlign: BorderSide.strokeAlignCenter),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: AppColors.darkBlue,width: 3,strokeAlign: BorderSide.strokeAlignCenter),
+          borderSide: const BorderSide(
+              color: AppColors.darkBlue,
+              width: 3,
+              strokeAlign: BorderSide.strokeAlignCenter),
         ),
       ),
     );
