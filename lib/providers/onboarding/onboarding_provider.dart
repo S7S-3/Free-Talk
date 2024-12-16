@@ -18,14 +18,17 @@ class OnboardingProvider extends ChangeNotifier {
     BoardingModel(
       title: 'Hello',
       body: 'Hello, I’m Mick, Hand talk’s virtual sign language translator and I’m here to help you',
+      btnText: "Next"
     ),
     BoardingModel(
       title: 'About the app',
       body: 'Globally awarded, the Hand Talk app assists in learning and understanding sign language through artificial intelligence. It currently supports ASL (American Sign Language)',
+      btnText: "Next"
     ),
     BoardingModel(
       title: 'Connect Effortlessly',
       body: 'The app uses Artificial Intelligence to translate. This means that the characters learn and improve translations with sentences, contexts, and feedback provided. That\'s why sometimes the translations may not be perfect.',
+      btnText: "Next"
     ),
   ];
 
