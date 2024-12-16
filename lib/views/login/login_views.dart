@@ -13,13 +13,13 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<LoginProvider>(context);
 
-
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Form(
         key: provider.formKey,
         child: Padding(
-          padding: const EdgeInsets.only(left: 20,top: 22,right: 20,bottom: 27),
+          padding:
+              const EdgeInsets.only(left: 20, top: 22, right: 20, bottom: 27),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -56,16 +56,27 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 28,),
-              CustomTextField(controller: provider.emailController,label: 'email'),
-              const SizedBox(height: 28,),
-              CustomTextField(controller: provider.passwordController,label: 'password'),
-              const SizedBox(height: 65,),
+              const SizedBox(
+                height: 28,
+              ),
+              CustomTextField(
+                  controller: provider.emailController, label: 'email'),
+              const SizedBox(
+                height: 28,
+              ),
+              CustomTextField(
+                  controller: provider.passwordController, label: 'password'),
+              const SizedBox(
+                height: 65,
+              ),
               const Spacer(),
-              CustomButton(function: (){
-                provider.login(provider.emailController.text,provider.passwordController.text,context);
-              }, text: 'Login'),
-               Padding(
+              CustomButton(
+                  function: () {
+                    provider.login(provider.emailController.text,
+                        provider.passwordController.text, context);
+                  },
+                  text: 'Login'),
+              Padding(
                 padding: const EdgeInsets.only(top: 13),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,22 +93,22 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap:(){
+                      onTap: () {
                         provider.navToRegister(context);
                       },
                       child: const Text(
                         'Register',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Color(0xFF03045E),
-                          fontSize: 20,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
-                          decoration: TextDecoration.underline
-                        ),
+                            color: Color(0xFF03045E),
+                            fontSize: 20,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w700,
+                            decoration: TextDecoration.underline),
                       ),
                     )
-                ],),
+                  ],
+                ),
               )
             ],
           ),

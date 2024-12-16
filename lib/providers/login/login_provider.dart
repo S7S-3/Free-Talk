@@ -8,17 +8,17 @@ class LoginProvider extends ChangeNotifier {
   bool isLogoVisible = true;
   final formKey = GlobalKey<FormState>();
 
-  void login(String email,String password,BuildContext context){
-    Navigator.pushNamedAndRemoveUntil(context, AppRoutes.home, (route) => false);
-
+  void login(String email, String password, BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(
+        context, AppRoutes.home, (route) => false);
   }
-  void navToRegister(BuildContext context){
+
+  void navToRegister(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.register);
   }
-  void isDisappear(BuildContext context){
-    isLogoVisible=!isLogoVisible;
+
+  void isDisappear(BuildContext context) {
+    isLogoVisible = !isLogoVisible;
     notifyListeners();
   }
-
-
 }
