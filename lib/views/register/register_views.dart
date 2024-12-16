@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:free_talk/providers/register/register_provider.dart';
-import 'package:free_talk/views/routes.dart';
 import 'package:provider/provider.dart';
 
 import '../../utils/colors/color.dart';
@@ -13,90 +12,72 @@ class RegisterViews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<RegisterProviders>(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: AppColors.gulfBlue,
-      body: SingleChildScrollView(
+    return WillPopScope(
+      onWillPop: ()async{
+        if (provider.currentPage == 2) {
+          provider.previousPage();
+          return false; // Prevent exiting the screen
+        }
+        return true;
+      },
+      child:  Scaffold(
+      backgroundColor: AppColors.white,
+      body: Form(
+        key: provider.formKey,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 38, horizontal: 12),
+          padding: const EdgeInsets.only(left: 20,top: 22,right: 20,bottom: 27),
           child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 38,
+              const Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 48),
+                  child: Image(
+                    image: AssetImage('assets/images/free_talk_blue.png'),
+                    height: 100,
+                    width: 100,
+                  ),
+                ),
               ),
-              const Row(
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     'Register',
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 64,
+                      foreground: Paint()
+                        ..shader = const LinearGradient(
+                          colors: [
+                            AppColors.gulfBlue,
+                            AppColors.darkBlue,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ).createShader(const Rect.fromLTWH(0, 0, 200, 50)),
                       fontFamily: 'Inter',
+                      fontSize: 32,
                       fontWeight: FontWeight.w700,
-                      height: 0,
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 120,
-              ),
-              provider.currentPage==1?CustomTextField(controller: provider.firstNameController,label: 'First Name',) :CustomTextField(controller: provider.passwordController,label: 'Password',),
-              const SizedBox(
-                height: 20,
-              ),
-              provider.currentPage==1?CustomTextField(controller: provider.lastNameController,label: 'Last Name',) :CustomTextField(controller: provider.confirmPasswordController,label: 'confirm Password',),
-              const SizedBox(
-                height: 20,
-              ),
-              provider.currentPage==1?CustomTextField(controller: provider.lastNameController,label: 'Email',) :const SizedBox(height: 50,),
-              const SizedBox(
-                height: 70,
-              ),
-              const Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Image(
-                    image: AssetImage(
-                      "assets/images/free_talk_white.png",
-                    ),
-                    width: 120,
-                    height: 120,
-                  ),
-                  Text(
-                    "Free Talk",
-                    style: TextStyle(
-                      fontSize: 42,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.white,
-                      fontFamily: 'SendFlowers',
                     ),
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 70,
-              ),
-              CustomButton(
-                text: provider.currentPage == 1 ? 'Next' : 'Register',
-                height: 50,
-                onPressed: () {
-                  provider.currentPage ==1?
-                  provider.nextPage():
-                  Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login, (route) => false,);
-                },
-                btnColor: AppColors.white,
-                txtColor: AppColors.black,
-              ),
+              const SizedBox(height: 28,),
+              provider.currentPage==1?CustomTextField(controller: provider.emailController,label: 'first name'):CustomTextField(controller: provider.emailController,label: 'email'),
+              const SizedBox(height: 28,),
+              provider.currentPage==1?CustomTextField(controller: provider.passwordController,label: 'last name'):CustomTextField(controller: provider.emailController,label: 'email'),
+              const SizedBox(height: 28,),
+              provider.currentPage==1? CustomTextField(controller: provider.emailController,label: 'email'):const SizedBox(height: 55,),
+              const SizedBox(height: 20,),
+              const Spacer(),
+              CustomButton(function: (){
+                provider.currentPage==1? provider.nextPage():provider.navToLogin(context);
+              }, text: provider.currentPage==1?'Next':'Register'),
             ],
           ),
         ),
       ),
+    )
     );
   }
 }

@@ -19,17 +19,25 @@ class CustomTextField extends StatelessWidget {
         filled: true,
         labelText: label,
         labelStyle: const TextStyle(
-          fontSize: 16,
+          fontSize: 20,
           fontWeight: FontWeight.w500,
-          color: AppColors.gulfBlue,
+          color: AppColors.gray,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: AppColors.darkBlue,width: 3,strokeAlign: BorderSide.strokeAlignCenter),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.gulfBlue),
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: AppColors.darkBlue,width: 3,strokeAlign: BorderSide.strokeAlignCenter),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: AppColors.darkBlue,width: 3,strokeAlign: BorderSide.strokeAlignCenter),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.gulfBlue),
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: AppColors.darkBlue,width: 3,strokeAlign: BorderSide.strokeAlignCenter),
         ),
       ),
     );
