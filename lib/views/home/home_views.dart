@@ -1,44 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:free_talk/providers/home/home_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../utils/colors/color.dart';
+import '../../utils/widgets/custom_bottom_nav_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        leading: IconButton(onPressed: (){
-        }, icon:const Icon(Icons.menu,color: AppColors.gulfBlue,) ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-          items: const [
-        BottomNavigationBarItem(
-        icon: Icon(
-          Icons.translate,
-          color: AppColors.gulfBlue,
+    final provider = Provider.of<HomeProvider>(context);
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          splashFactory: NoSplash.splashFactory, // Removes ripple effect
+          highlightColor: Colors.transparent, // Removes highlight effect
         ),
-        label: 'Translate',
-      ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.book_outlined,
-            color: AppColors.gulfBlue,
-          ),
-          label: 'Dictionary',
+        child: BottomNavigationBar(
+          unselectedItemColor: AppColors.darkBlue,
+          type: BottomNavigationBarType.fixed,
+          onTap: (index) {
+            provider.bottomNav(index);
+          },
+          currentIndex: provider.currentScreen,
+          selectedLabelStyle: const TextStyle(
+              fontSize: 12,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+              color: AppColors.darkBlue),
+          unselectedLabelStyle: const TextStyle(
+              fontSize: 12,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+              color: AppColors.darkBlue),
+          elevation: 0,
+          backgroundColor: AppColors.white,
+          items: [
+            CustomBottomNavigationBarItem.create(icon: Icons.translate, label: 'Translate'),
+            CustomBottomNavigationBarItem.create(icon: Icons.menu_book_outlined, label: 'Dictionary'),
+            CustomBottomNavigationBarItem.create(icon: Icons.person, label: 'Account')
+          ],
         ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.person,
-            color: AppColors.gulfBlue,
-          ),
-          label: 'Account',
-        ),
-      ],
-
       ),
-      body: const Center(child: Text('Welcome to the Home Screen!')),
+      body: provider.screens[provider.currentScreen],
     );
   }
 }
