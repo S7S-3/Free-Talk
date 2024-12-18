@@ -14,7 +14,6 @@ class CustomButton extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 65,
-        padding: const EdgeInsets.only(top: 7, left: 69, right: 70, bottom: 6),
         decoration: ShapeDecoration(
           gradient: const LinearGradient(
             begin: Alignment(0.00, -1.00),
@@ -45,8 +44,6 @@ class CustomButton extends StatelessWidget {
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
-                height: 0.04,
-                letterSpacing: -0.67,
               ),
             ),
           ],
