@@ -23,4 +23,5 @@ abstract class AppColors {
   static const Color gulfBlue= Color(0xff03045E);
   static const Color darkBlue= Color(0xff0608C4);
   static const Color gallery= Color(0xffECECEC);
+  static const Color silverChalice= Color(0xffADADAD);
 }
