@@ -1,17 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:free_talk/utils/constants/constants.dart';
 
 class DioHelper {
   static final Dio dio = Dio(
     BaseOptions(
-      baseUrl: 'https://bodehatem99-001-site1.jtempurl.com/api/',
+      baseUrl: Constants.baseUrl,
       receiveDataWhenStatusError: true,
     ),
   );
 
   static Future<Response> getData({
     required String url,
-    required Map<String, dynamic> query, // Make query required
+    Map<String, dynamic>? query, // Make query required
     String lang = 'en',
     String? token,
   }) async {
@@ -30,7 +31,7 @@ class DioHelper {
   static Future<Response> postData({
     required String url,
     required Map<String, dynamic> data, // Make data required
-    required Map<String, dynamic> query, // Make query required
+    Map<String, dynamic>? query, // Make query required
     String lang = 'en',
     String? token,
   }) async {
@@ -50,7 +51,7 @@ class DioHelper {
   static Future<Response> putData({
     required String url,
     required Map<String, dynamic> data, // Make data required
-    required Map<String, dynamic> query, // Make query required
+    Map<String, dynamic>? query, // Make query required
     String lang = 'en',
     String? token,
   }) async {
