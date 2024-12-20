@@ -1,4 +1,6 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:free_talk/models/login/loginmodel.dart';
 import 'package:free_talk/utils/widgets/custom_text_field.dart';
 import 'package:provider/provider.dart';
 import 'package:free_talk/utils/colors/color.dart';
@@ -60,22 +62,33 @@ class LoginScreen extends StatelessWidget {
                 height: 28,
               ),
               CustomTextField(
-                  controller: provider.emailController, label: 'email'),
+                  controller: provider.userNameController, label: 'username',obscureText: false,),
               const SizedBox(
                 height: 28,
               ),
               CustomTextField(
-                  controller: provider.passwordController, label: 'password'),
+                  controller: provider.passwordController, label: 'password',icon: IconButton(onPressed: (){provider.passwordVisible();}, icon: Icon(provider.isPasswordVisible? Icons.visibility_off : Icons.visibility)),obscureText: provider.isPasswordVisible,),
               const SizedBox(
                 height: 65,
               ),
               const Spacer(),
-              CustomButton(
-                  function: () {
-                    provider.login(provider.emailController.text,
-                        provider.passwordController.text, context);
-                  },
-                  text: 'Login'),
+              ConditionalBuilder(
+                fallback: (context) => const Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(color: AppColors.darkBlue,)
+                  ],
+                ),
+                condition: !provider.loading,
+                builder: (context) {
+                  return CustomButton(
+                      function: () {
+                        provider.loginAccount(context);
+                      },
+                      text: 'Login');
+                }
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 13),
                 child: Row(

@@ -1,4 +1,6 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:free_talk/models/register/registermodel.dart';
 import 'package:free_talk/providers/register/register_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -68,39 +70,89 @@ class RegisterViews extends StatelessWidget {
                   ),
                   provider.currentPage == 1
                       ? CustomTextField(
+                    obscureText: false,
+                          controller: provider.userNameController,
+                          label: 'username',
+                          validator: (value){
+                            if(value.isEmpty){
+                              return 'please enter your username';
+                            }
+
+                          },
+                  )
+                      : CustomTextField(
+                    obscureText: provider.isPasswordVisible,
+                          controller: provider.passwordController, label: 'password',
+                    icon: IconButton(onPressed: (){provider.passwordVisible();}, icon: Icon(provider.isPasswordVisible? Icons.visibility_off : Icons.visibility)),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password is required';
+                      } else if (!RegExp(provider.passwordPattern).hasMatch(value)) {
+                        return 'Password must contain at least:\n'
+                            '- One uppercase letter\n'
+                            '- One lowercase letter\n'
+                            '- One number\n'
+                            '- One special character (@\$!%*?&)\n'
+                            '- Minimum 8 characters';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 28,
+                  ),
+                  provider.currentPage == 1
+                      ? CustomTextField(
+                    obscureText: false,
                           controller: provider.emailController,
-                          label: 'first name')
+                          label: 'email',
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Email is required';
+                      } else if (!RegExp(provider.emailPattern).hasMatch(value)) {
+                        return 'Enter a valid email address';
+                      }
+                      return null;
+                    },
+                  )
                       : CustomTextField(
-                          controller: provider.emailController, label: 'email'),
-                  const SizedBox(
-                    height: 28,
-                  ),
-                  provider.currentPage == 1
-                      ? CustomTextField(
-                          controller: provider.passwordController,
-                          label: 'last name')
-                      : CustomTextField(
-                          controller: provider.emailController, label: 'email'),
-                  const SizedBox(
-                    height: 28,
-                  ),
-                  provider.currentPage == 1
-                      ? CustomTextField(
-                          controller: provider.emailController, label: 'email')
-                      : const SizedBox(
-                          height: 55,
-                        ),
-                  const SizedBox(
-                    height: 20,
+                    obscureText: provider.isConfirmPasswordVisible,
+                          controller: provider.confirmPasswordController,
+                    icon: IconButton(onPressed: (){
+                      provider.confirmPasswordVisible();
+                    }, icon: Icon(provider.isConfirmPasswordVisible? Icons.visibility_off : Icons.visibility)),
+                      label: 'confirm password',
+                    validator: (value) {
+                            if(value!= provider.passwordController.text){
+                              return 'password not match';
+                            }
+                            return null;
+                    },
                   ),
                   const Spacer(),
-                  CustomButton(
-                      function: () {
-                        provider.currentPage == 1
-                            ? provider.nextPage()
-                            : provider.navToLogin(context);
-                      },
-                      text: provider.currentPage == 1 ? 'Next' : 'Register'),
+                  ConditionalBuilder(
+                      condition: !provider.loading,
+                      fallback: (context) => const Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(
+                            color: AppColors.darkBlue,
+                          ),
+                        ],
+                      ),
+                      builder: (context) {
+                      return CustomButton(
+                          function: () {
+                            if(provider.formKey.currentState!.validate()){
+                                provider.currentPage == 1
+                                    ? provider.nextPage()
+                                    : provider.registerAccount(context);
+                              }
+                            },
+                          text: provider.currentPage == 1 ? 'Next' : 'Register');
+                    }
+                  ),
                 ],
               ),
             ),
