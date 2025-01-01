@@ -3,6 +3,7 @@ class LoginModel {
   String? userName;
   String? token;
   String? expiration;
+  String? message;
 
   LoginModel({this.password, this.userName});
 

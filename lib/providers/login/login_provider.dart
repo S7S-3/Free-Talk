@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:free_talk/services/helper/dio_helper.dart';
 import 'package:free_talk/utils/constants/constants.dart';
@@ -26,27 +27,45 @@ class LoginProvider extends ChangeNotifier {
   void navToRegister(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.register);
   }
-  void loginAccount(BuildContext context)async{
-    loading =true;
+  void loginAccount(BuildContext context) async {
+    loading = true;
     notifyListeners();
-    try{
-        login=LoginModel(password: passwordController.text,userName: userNameController.text);
-        DioHelper.postData(url: Constants.login, data: login.toJson()).then((value) {
-        login = LoginModel.fromJson(value.data);
-        SecureCacheHelper.saveData(key: 'token', value: login.token);
-      },);
-        loading = false;
-        message ='Login success';
-        showCustomSnackBar(context,message);
-       Navigator.pushNamedAndRemoveUntil(
-           context, AppRoutes.home, (route) => false);
-    }catch(e){
-      message ='Invalid Credentials';
-      showCustomSnackBar(context,message);
-    }finally{
-      loading =false;
+    try {
+      login = LoginModel(
+        password: passwordController.text,
+        userName: userNameController.text,
+      );
+      final response = await DioHelper.postData(
+        url: Constants.login,
+        data: login.toJson(),
+      );
+      login = LoginModel.fromJson(response.data);
+      await SecureCacheHelper.saveData(key: 'token', value: login.token);
+
+      message = 'Login success';
+      showCustomSnackBar(context, message);
+
+      // Navigate to the home screen only on successful login
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.home,
+            (route) => false,
+      );
+    } on DioException catch (e) {
+      if (e.response != null && e.response!.statusCode == 400) {
+        message = 'Invalid Credentials';
+      } else {
+        message = 'An error occurred: ${e.message}';
+      }
+      showCustomSnackBar(context, message);
+    } catch (e) {
+      message = 'An unexpected error occurred';
+      showCustomSnackBar(context, message);
+    } finally {
+      loading = false;
       notifyListeners();
     }
   }
+
 
 }
