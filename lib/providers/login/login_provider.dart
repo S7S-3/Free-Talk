@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:free_talk/services/helper/cache_helper.dart';
 import 'package:free_talk/services/helper/dio_helper.dart';
 import 'package:free_talk/utils/constants/constants.dart';
 import 'package:free_talk/views/routes.dart';
 
 import '../../models/login/loginmodel.dart';
-import '../../services/helper/secure_cache_helper.dart';
 import '../../utils/widgets/custom_snackbar.dart';
 
 class LoginProvider extends ChangeNotifier {
@@ -16,7 +16,6 @@ class LoginProvider extends ChangeNotifier {
   bool loginSuccess = false;
   String message = '';
   LoginModel login=LoginModel();
-  var cache;
   final formKey = GlobalKey<FormState>();
 
   void passwordVisible(){
@@ -40,7 +39,7 @@ class LoginProvider extends ChangeNotifier {
         data: login.toJson(),
       );
       login = LoginModel.fromJson(response.data);
-      await SecureCacheHelper.saveData(key: 'token', value: login.token);
+      await CacheHelper.saveData(key: 'token', value: login.token);
 
       message = 'Login success';
       showCustomSnackBar(context, message);
