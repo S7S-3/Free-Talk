@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "234797928266",
+    "project_id": "freetalk-52871",
+    "storage_bucket": "freetalk-52871.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234797928266:android:a796965366c1c1577a3bb3",
+        "android_client_info": {
+          "package_name": "com.example.free_talk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8nN_Zv6Lh0a1d9Mcc4iLmFfm25JY9_gU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
