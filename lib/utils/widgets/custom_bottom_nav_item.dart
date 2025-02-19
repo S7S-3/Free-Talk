@@ -8,29 +8,15 @@ class CustomBottomNavigationBarItem {
     required String label,
   }) {
     return BottomNavigationBarItem(
-      icon: Container(
-        width: 65,
-        height: 35,
-        decoration: ShapeDecoration(
-          color: AppColors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        child: Icon(
-          icon,
-          color: AppColors.darkBlue,
-        ),
+      icon: Icon(
+        icon,
+        color: AppColors.tealBlue,
       ),
       activeIcon: Container(
         width: 65,
         height: 35,
         decoration: ShapeDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment(0.00, -1.00),
-            end: Alignment(0, 1),
-            colors: [AppColors.gulfBlue, AppColors.darkBlue],
-          ),
+          color: AppColors.tealBlue,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),

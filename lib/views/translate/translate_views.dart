@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:free_talk/providers/home/home_provider.dart';
 import 'package:provider/provider.dart';
@@ -11,106 +12,130 @@ class TranslateScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var provider = Provider.of<HomeProvider>(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 12),
+      padding: const EdgeInsets.symmetric( horizontal: 12),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Translate',
-            style: TextStyle(
-                foreground: Paint()
-                  ..shader = const LinearGradient(
-                    colors: [
-                      AppColors.gulfBlue,
-                      AppColors.darkBlue,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ).createShader(const Rect.fromLTWH(0, 0, 200, 50)),
-                fontSize: 64,
-                fontWeight: FontWeight.w600),
-          ),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                  color: AppColors.gray,
+                  color: AppColors.white,
                   borderRadius: BorderRadius.circular(20)),
               clipBehavior: Clip.antiAlias,
-              child: const Image(image: AssetImage('assets/images/avatar.png'),height: double.infinity,fit: BoxFit.fitHeight,
-              width: double.infinity,),
-            ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          TextFormField(
-            controller: provider.translateController,
-            cursorColor: AppColors.gulfBlue,
-            decoration: InputDecoration(
-                fillColor: AppColors.white,
-                filled: true,
-                labelText: 'Type to translate',
-                labelStyle: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.gray,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(
-                      color: AppColors.darkBlue,
-                      width: 3,
-                      strokeAlign: BorderSide.strokeAlignCenter),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(
-                      color: AppColors.darkBlue,
-                      width: 3,
-                      strokeAlign: BorderSide.strokeAlignCenter),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(
-                      color: AppColors.darkBlue,
-                      width: 3,
-                      strokeAlign: BorderSide.strokeAlignCenter),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(
-                      color: AppColors.darkBlue,
-                      width: 3,
-                      strokeAlign: BorderSide.strokeAlignCenter),
-                ),
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 7,horizontal: 16),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.end,
+              child: ListView.separated(
+                  itemBuilder: (context, index) => Column(
                     children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.camera_alt,size: 24,),
-                        color: AppColors.white,
-                        style: const ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(AppColors.darkBlue)),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.mic,size: 24,),
-                        color: AppColors.white,
-                        style: const ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(AppColors.darkBlue)),
-                      ),
+                      Text(provider.sentence[index].word),
+                      GridView.count(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                          crossAxisCount: 3,
+                        children: [
+                          for (int i = 0; i < provider.sentence[index].images.length; i++)
+                            Image(image: AssetImage(provider.sentence[index].images[i]),height: 80,width: 50,),
+                        ],
+                      )
                     ],
                   ),
-                )),
-          )
+                  separatorBuilder:(context, index) =>  const SizedBox(height: 20,),
+                  itemCount: provider.words.length
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Align(
+              alignment: Alignment.bottomLeft, // Align to the bottom left
+              child: Stack(
+                alignment: Alignment.centerLeft, // Ensure the icons are still left-aligned
+                children: [
+                  TextFormField(
+                    controller: provider.translateController,
+                    cursorColor: AppColors.tealBlue,
+                    decoration: InputDecoration(
+                      fillColor: AppColors.gallery,
+                      labelText: 'Type to translate',
+                      labelStyle: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.gray,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: AppColors.tealBlue,
+                          width: 3,
+                          strokeAlign: BorderSide.strokeAlignCenter,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: AppColors.tealBlue,
+                          width: 3,
+                          strokeAlign: BorderSide.strokeAlignCenter,
+                        ),
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: AppColors.tealBlue,
+                          width: 3,
+                          strokeAlign: BorderSide.strokeAlignCenter,
+                        ),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: AppColors.tealBlue,
+                          width: 3,
+                          strokeAlign: BorderSide.strokeAlignCenter,
+                        ),
+                      ),
+                      counterStyle: const TextStyle(
+                        color: AppColors.tealBlue,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: 0, // Keep it near the right edge of the TextFormField
+                    bottom: 0, // Align it at the bottom
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min, // Ensure it wraps around its children
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.camera_alt, size: 24),
+                            color: AppColors.gallery,
+                            style: const ButtonStyle(
+                              backgroundColor:
+                              WidgetStatePropertyAll(AppColors.tealBlue),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              provider.onTranslate();
+                            },
+                            icon: const Icon(Icons.send, size: 24),
+                            color: AppColors.gallery,
+                            style: const ButtonStyle(
+                              backgroundColor:
+                              WidgetStatePropertyAll(AppColors.tealBlue),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
         ],
       ),
     );

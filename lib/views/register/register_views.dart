@@ -23,7 +23,7 @@ class RegisterViews extends StatelessWidget {
           return true;
         },
         child: Scaffold(
-          backgroundColor: AppColors.white,
+          backgroundColor: AppColors.gallery,
           body: Form(
             key: provider.formKey,
             child: Padding(
@@ -42,22 +42,14 @@ class RegisterViews extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Row(
+                  const Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         'Register',
                         style: TextStyle(
-                          foreground: Paint()
-                            ..shader = const LinearGradient(
-                              colors: [
-                                AppColors.gulfBlue,
-                                AppColors.darkBlue,
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ).createShader(const Rect.fromLTWH(0, 0, 200, 50)),
+                         color: AppColors.tealBlue,
                           fontFamily: 'Inter',
                           fontSize: 32,
                           fontWeight: FontWeight.w700,
@@ -137,7 +129,7 @@ class RegisterViews extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CircularProgressIndicator(
-                            color: AppColors.darkBlue,
+                            color: AppColors.tealBlue,
                           ),
                         ],
                       ),

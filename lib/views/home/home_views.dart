@@ -12,14 +12,21 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeProvider>(context);
     return Scaffold(
-      backgroundColor: AppColors.white,
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          splashFactory: NoSplash.splashFactory, // Removes ripple effect
-          highlightColor: Colors.transparent, // Removes highlight effect
+      appBar: AppBar(
+        backgroundColor: AppColors.white,
+        title:  Text(
+          provider.titles[provider.currentScreen],
+          style: const TextStyle(
+            color: AppColors.tealBlue,
+            fontSize: 32,
+            fontWeight: FontWeight.w600
+          ),
         ),
-        child: BottomNavigationBar(
-          unselectedItemColor: AppColors.darkBlue,
+      ),
+      backgroundColor: AppColors.white,
+      bottomNavigationBar: BottomNavigationBar(
+          unselectedItemColor: AppColors.tealBlue,
+          selectedItemColor: AppColors.tealBlue,
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             provider.bottomNav(index);
@@ -27,24 +34,28 @@ class HomeScreen extends StatelessWidget {
           currentIndex: provider.currentScreen,
           selectedLabelStyle: const TextStyle(
               fontSize: 12,
-              fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
-              color: AppColors.darkBlue),
+              color: AppColors.white),
           unselectedLabelStyle: const TextStyle(
               fontSize: 12,
-              fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
-              color: AppColors.darkBlue),
-          elevation: 0,
-          backgroundColor: AppColors.white,
+              color: AppColors.white),
+          elevation: 1.5,
+        backgroundColor: AppColors.white,
           items: [
             CustomBottomNavigationBarItem.create(icon: Icons.translate, label: 'Translate'),
             CustomBottomNavigationBarItem.create(icon: Icons.menu_book_outlined, label: 'Dictionary'),
+            CustomBottomNavigationBarItem.create(icon: Icons.chat_outlined, label: 'Chat bot'),
             CustomBottomNavigationBarItem.create(icon: Icons.person, label: 'Account')
           ],
         ),
+      body: PageView(
+        controller: provider.pageController,
+        onPageChanged: (value) {
+          provider.bottomNav(value);
+        },
+        children:provider.screens,
       ),
-      body: provider.screens[provider.currentScreen],
     );
   }
 }

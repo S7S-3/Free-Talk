@@ -17,21 +17,6 @@ class SearchScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Dictionary',
-            style: TextStyle(
-                foreground: Paint()
-                  ..shader = const LinearGradient(
-                    colors: [
-                      AppColors.gulfBlue,
-                      AppColors.darkBlue,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ).createShader(const Rect.fromLTWH(0, 0, 200, 50)),
-                fontSize: 64,
-                fontWeight: FontWeight.w600),
-          ),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
@@ -42,10 +27,10 @@ class SearchScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(18),
                     child: TextFormField(
-                      controller: provider.translateController,
-                      cursorColor: AppColors.gulfBlue,
+                      controller: provider.searchController,
+                      cursorColor: AppColors.tealBlue,
                       decoration: InputDecoration(
-                          fillColor: AppColors.white,
+                          fillColor: AppColors.gallery,
                           filled: true,
                           labelText: 'Search',
                           labelStyle: const TextStyle(
@@ -56,28 +41,28 @@ class SearchScreen extends StatelessWidget {
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: const BorderSide(
-                                color: AppColors.darkBlue,
+                                color: AppColors.tealBlue,
                                 width: 3,
                                 strokeAlign: BorderSide.strokeAlignCenter),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: const BorderSide(
-                                color: AppColors.darkBlue,
+                                color: AppColors.tealBlue,
                                 width: 3,
                                 strokeAlign: BorderSide.strokeAlignCenter),
                           ),
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: const BorderSide(
-                                color: AppColors.darkBlue,
+                                color: AppColors.tealBlue,
                                 width: 3,
                                 strokeAlign: BorderSide.strokeAlignCenter),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: const BorderSide(
-                                color: AppColors.darkBlue,
+                                color: AppColors.tealBlue,
                                 width: 3,
                                 strokeAlign: BorderSide.strokeAlignCenter),
                           ),

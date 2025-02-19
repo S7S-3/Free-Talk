@@ -17,16 +17,8 @@ class CustomBoardingItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
-              foreground: Paint()
-                ..shader = const LinearGradient(
-                  colors: [
-                    AppColors.gulfBlue,
-                    AppColors.darkBlue,
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ).createShader(const Rect.fromLTWH(0, 0, 200, 50)),
+            style: const TextStyle(
+              color: AppColors.tealBlue,
               fontSize: 35,
               fontWeight: FontWeight.w600,
               height: 0,

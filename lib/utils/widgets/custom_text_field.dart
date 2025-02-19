@@ -15,11 +15,11 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       obscureText: obscureText?? false,
       controller: controller,
-      cursorColor: AppColors.gulfBlue,
+      cursorColor: AppColors.tealBlue,
       validator: validator,
       decoration: InputDecoration(
         suffixIcon: icon,
-        fillColor: AppColors.white,
+        fillColor: AppColors.gallery,
         filled: true,
         labelText: label,
         labelStyle: const TextStyle(
@@ -30,28 +30,28 @@ class CustomTextField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: const BorderSide(
-              color: AppColors.darkBlue,
+              color: AppColors.tealBlue,
               width: 3,
               strokeAlign: BorderSide.strokeAlignCenter),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: const BorderSide(
-              color: AppColors.darkBlue,
+              color: AppColors.tealBlue,
               width: 3,
               strokeAlign: BorderSide.strokeAlignCenter),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: const BorderSide(
-              color: AppColors.darkBlue,
+              color: AppColors.tealBlue,
               width: 3,
               strokeAlign: BorderSide.strokeAlignCenter),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: const BorderSide(
-              color: AppColors.darkBlue,
+              color: AppColors.tealBlue,
               width: 3,
               strokeAlign: BorderSide.strokeAlignCenter),
         ),

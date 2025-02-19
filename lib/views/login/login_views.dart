@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
     final provider = Provider.of<LoginProvider>(context);
 
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.gallery,
       body: Form(
         key: provider.formKey,
         child: Padding(
@@ -35,22 +35,14 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Row(
+              const Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     'Login',
                     style: TextStyle(
-                      foreground: Paint()
-                        ..shader = const LinearGradient(
-                          colors: [
-                            AppColors.gulfBlue,
-                            AppColors.darkBlue,
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ).createShader(const Rect.fromLTWH(0, 0, 200, 50)),
+                      color: AppColors.tealBlue,
                       fontFamily: 'Inter',
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
@@ -77,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircularProgressIndicator(color: AppColors.darkBlue,)
+                    CircularProgressIndicator(color: AppColors.tealBlue,)
                   ],
                 ),
                 condition: !provider.loading,

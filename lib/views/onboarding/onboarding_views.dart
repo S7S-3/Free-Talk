@@ -52,8 +52,8 @@ class OnboardingScreen extends StatelessWidget {
                 SmoothPageIndicator(
                   controller: boardController,
                   effect: const ExpandingDotsEffect(
-                    dotColor: AppColors.gulfBlue,
-                    activeDotColor: AppColors.darkBlue,
+                    dotColor: AppColors.tealBlue,
+                    activeDotColor: AppColors.tealBlue,
                     dotHeight: 20,
                     dotWidth: 20,
                   ),
@@ -71,7 +71,7 @@ class OnboardingScreen extends StatelessWidget {
                       provider.completeOnboarding(context);
                     }
                   },
-                  child: Row(
+                  child: const Row(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -79,37 +79,17 @@ class OnboardingScreen extends StatelessWidget {
                       Text(
                         'Next',
                         style: TextStyle(
-                          foreground: Paint()
-                            ..shader = const LinearGradient(
-                              colors: [
-                                AppColors.gulfBlue,
-                                AppColors.darkBlue,
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ).createShader(const Rect.fromLTWH(0, 0, 200, 50)),
+                          color: AppColors.tealBlue,
                           fontSize: 30,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
                           height: 0.05,
                         ),
                       ),
-                      ShaderMask(
-                        shaderCallback: (Rect bounds) {
-                          return const LinearGradient(
-                            colors: [
-                              AppColors.gulfBlue,
-                              AppColors.darkBlue,
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                          ).createShader(bounds);
-                        },
-                        blendMode: BlendMode.srcIn,
-                        child: const Icon(
-                          Icons.keyboard_double_arrow_right_outlined,
-                          size: 30,
-                        ),
+                      Icon(
+                        color: AppColors.tealBlue,
+                        Icons.keyboard_double_arrow_right_outlined,
+                        size: 30,
                       ),
                     ],
                   ),

@@ -15,11 +15,7 @@ class CustomButton extends StatelessWidget {
         width: double.infinity,
         height: 65,
         decoration: ShapeDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment(0.00, -1.00),
-            end: Alignment(0, 1),
-            colors: [AppColors.gulfBlue, AppColors.darkBlue],
-          ),
+          color: AppColors.tealBlue,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),

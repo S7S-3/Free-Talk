@@ -23,8 +23,6 @@ class AccountScreen extends StatelessWidget {
           children: [
             Container(height: 100,width: 100,decoration: const ShapeDecoration(shape: OvalBorder(),color: AppColors.gray),),
             const SizedBox(height: 25,),
-            const CustomButton(text: 'Become a subscriber'),
-            const SizedBox(height: 40,),
             const AccountSection(),
             const SizedBox(height: 40,),
             const HelpSection(),
