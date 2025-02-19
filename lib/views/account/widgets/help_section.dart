@@ -38,7 +38,7 @@ class HelpSection extends StatelessWidget {
             child: ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 3,
+              itemCount: 2,
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.only(left: 20,right: 20,bottom:8 ),
                 child: Row(

@@ -39,7 +39,6 @@ class HomeProvider extends ChangeNotifier {
     AccountModel(title: 'Profile', body: 'Not identified', suffix: Icons.edit_outlined,prefixIcon: null)
   ];
   List<AccountModel> help=[
-    AccountModel( body: 'Tutorial', prefixIcon: Icons.book_rounded,suffix: Icons.keyboard_arrow_right,title: null),
     AccountModel( body: 'Frequently asked questions', prefixIcon: Icons.question_mark,suffix: Icons.keyboard_arrow_right,title: null),
     AccountModel( body: 'Make comments', prefixIcon: Icons.mode_comment_outlined,suffix: Icons.keyboard_arrow_right,title: null),
   ];
