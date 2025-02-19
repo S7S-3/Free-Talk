@@ -25,7 +25,7 @@ class HomeProvider extends ChangeNotifier {
   List<String> titles=[
     'Translate',
     'Dictionary',
-    'chat',
+    'Chat Bot',
     'Account',
   ];
   void bottomNav(int index){
