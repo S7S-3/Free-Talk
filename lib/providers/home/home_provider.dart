@@ -59,7 +59,7 @@ class HomeProvider extends ChangeNotifier {
     for (String word in words) {
       images=[];
       for (int i = 0; i < word.length; i++) {
-        images.add("assets/signs/${word[i]}.png");
+        images.add("assets/signs/${word[i].toLowerCase()}.png");
       }
       sentence.add(TranslateModel(word: word, images: images) );
     }
