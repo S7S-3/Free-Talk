@@ -25,6 +25,17 @@ class AuthService {
       throw "An unexpected error occurred. Please try again.";
     }
   }
+  Future<String> register(LoginModel login) async {
+    try {
+      final response = await firebaseAuth.createUserWithEmailAndPassword(
+        email: login.email,
+        password: login.password,
+      );
+      return response.user?.uid ?? '';
+    }on FirebaseAuthException catch (e) {
+      throw extractFirebaseAuthError(e);
+    }
+  }
 
   String extractFirebaseAuthError(FirebaseAuthException e) {
     switch (e.code) {

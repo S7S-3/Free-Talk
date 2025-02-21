@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:free_talk/models/register/registermodel.dart';
+import 'package:free_talk/models/user/user_model.dart';
+import 'package:free_talk/services/firebase/auth_service.dart';
+import 'package:free_talk/services/firebase/user_service.dart';
 import 'package:free_talk/services/helper/dio_helper.dart';
 import 'package:free_talk/utils/constants/constants.dart';
 
+import '../../models/login/loginmodel.dart';
 import '../../utils/widgets/custom_snackbar.dart';
 
 class RegisterProviders extends ChangeNotifier {
@@ -20,6 +24,15 @@ class RegisterProviders extends ChangeNotifier {
   bool registerSuccess = false;
   String message = '';
   RegisterModel register = RegisterModel();
+  UserModel user = UserModel(
+    profile: '',
+    name: '',
+    email: ''
+  );
+  LoginModel login = LoginModel(
+    email: '',
+    password: ''
+  );
 
   final formKey = GlobalKey<FormState>();
   void nextPage() {
@@ -46,29 +59,11 @@ class RegisterProviders extends ChangeNotifier {
     loading = true;
     notifyListeners();
     try {
-      register = RegisterModel(
-        userName: userNameController.text,
-        email: emailController.text,
-        password: passwordController.text,
-        confirmPassword: confirmPasswordController.text,
-      );
-      await DioHelper.postData(
-        url: Constants.register,
-        data: register.toJson(),
-      ).then(
-        (value) {
-          register = RegisterModel.fromJson(value.data);
-        },
-      );
-      loading = false;
-      message = 'has been created';
-      showCustomSnackBar(context,message);
+      var uid = await AuthService().register(login);
+        await UserService().setData(user, uid);
       Navigator.pop(context);
     } catch (e) {
-      registerSuccess = false;
-      message = 'User is already existed';
-      showCustomSnackBar(context,message);
-      notifyListeners();
+      showCustomSnackBar(context, e.runtimeType.toString());
     } finally {
       loading = false;
     }

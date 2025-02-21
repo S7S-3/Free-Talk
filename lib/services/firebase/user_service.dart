@@ -18,4 +18,15 @@ class UserService {
     }
     return UserModel(profile: "0", name: '', email: '');
   }
+  Future<void> setData(UserModel user, String uid) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(uid)
+          .set(user.toJson());
+    }
+    catch (e) {
+      print(e);
+    }
+  }
 }
