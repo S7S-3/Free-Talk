@@ -1,6 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:free_talk/models/register/registermodel.dart';
 import 'package:free_talk/providers/register/register_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +13,7 @@ class RegisterViews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<RegisterProviders>(context);
+    // ignore: deprecated_member_use
     return WillPopScope(
         onWillPop: () async {
           if (provider.currentPage == 2) {
@@ -69,6 +69,7 @@ class RegisterViews extends StatelessWidget {
                             if(value.isEmpty){
                               return 'please enter your username';
                             }
+                            return null;
 
                           },
                   )

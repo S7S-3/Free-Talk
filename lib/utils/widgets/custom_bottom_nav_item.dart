@@ -13,7 +13,7 @@ class CustomBottomNavigationBarItem {
         color: AppColors.tealBlue,
       ),
       activeIcon: Container(
-        width: 65,
+        width: 55,
         height: 35,
         decoration: ShapeDecoration(
           color: AppColors.tealBlue,

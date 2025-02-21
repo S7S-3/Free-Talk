@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../colors/color.dart';
 
+// ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
   CustomTextField({super.key, this.controller, this.validator, this.label,this.icon,required this.obscureText});
   TextEditingController? controller;
@@ -28,28 +29,28 @@ class CustomTextField extends StatelessWidget {
           color: AppColors.gray,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(55),
           borderSide: const BorderSide(
               color: AppColors.tealBlue,
               width: 3,
               strokeAlign: BorderSide.strokeAlignCenter),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(55),
           borderSide: const BorderSide(
               color: AppColors.tealBlue,
               width: 3,
               strokeAlign: BorderSide.strokeAlignCenter),
         ),
         disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(55),
           borderSide: const BorderSide(
               color: AppColors.tealBlue,
               width: 3,
               strokeAlign: BorderSide.strokeAlignCenter),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(55),
           borderSide: const BorderSide(
               color: AppColors.tealBlue,
               width: 3,

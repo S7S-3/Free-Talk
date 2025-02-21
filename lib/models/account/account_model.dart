@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 
 class AccountModel {
   final String? title;
-  final String body;
+  String? value;
   final IconData? prefixIcon;
   final IconData? suffix;
 
   AccountModel({
     this.title,
-    required this.body,
+    this.value,
     this.prefixIcon,
     this.suffix
   });

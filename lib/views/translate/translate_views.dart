@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:free_talk/providers/home/home_provider.dart';
 import 'package:provider/provider.dart';
@@ -18,32 +17,6 @@ class TranslateScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(20)),
-              clipBehavior: Clip.antiAlias,
-              child: ListView.separated(
-                  itemBuilder: (context, index) => Column(
-                    children: [
-                      Text(provider.sentence[index].word),
-                      GridView.count(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                          crossAxisCount: 3,
-                        children: [
-                          for (int i = 0; i < provider.sentence[index].images.length; i++)
-                            Image(image: AssetImage(provider.sentence[index].images[i]),height: 80,width: 50,),
-                        ],
-                      )
-                    ],
-                  ),
-                  separatorBuilder:(context, index) =>  const SizedBox(height: 20,),
-                  itemCount: provider.words.length
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Align(
@@ -52,18 +25,32 @@ class TranslateScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft, // Ensure the icons are still left-aligned
                 children: [
                   TextFormField(
+                    onChanged: (value) => provider.onTranslate(),
                     controller: provider.translateController,
                     cursorColor: AppColors.tealBlue,
                     decoration: InputDecoration(
+                      hintText: "Type to translate",
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.camera_alt, size: 24),
+                          color: AppColors.gallery,
+                          style: const ButtonStyle(
+                            backgroundColor:
+                            WidgetStatePropertyAll(AppColors.tealBlue),
+                            elevation: WidgetStatePropertyAll(1),
+                          ),
+                        ),
+                      ),
                       fillColor: AppColors.gallery,
-                      labelText: 'Type to translate',
                       labelStyle: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                         color: AppColors.gray,
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(55),
                         borderSide: const BorderSide(
                           color: AppColors.tealBlue,
                           width: 3,
@@ -71,7 +58,7 @@ class TranslateScreen extends StatelessWidget {
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(55),
                         borderSide: const BorderSide(
                           color: AppColors.tealBlue,
                           width: 3,
@@ -79,7 +66,7 @@ class TranslateScreen extends StatelessWidget {
                         ),
                       ),
                       disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(55),
                         borderSide: const BorderSide(
                           color: AppColors.tealBlue,
                           width: 3,
@@ -87,7 +74,7 @@ class TranslateScreen extends StatelessWidget {
                         ),
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(55),
                         borderSide: const BorderSide(
                           color: AppColors.tealBlue,
                           width: 3,
@@ -99,43 +86,39 @@ class TranslateScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Positioned(
-                    right: 0, // Keep it near the right edge of the TextFormField
-                    bottom: 0, // Align it at the bottom
-                    child: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min, // Ensure it wraps around its children
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.camera_alt, size: 24),
-                            color: AppColors.gallery,
-                            style: const ButtonStyle(
-                              backgroundColor:
-                              WidgetStatePropertyAll(AppColors.tealBlue),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              provider.onTranslate();
-                            },
-                            icon: const Icon(Icons.send, size: 24),
-                            color: AppColors.gallery,
-                            style: const ButtonStyle(
-                              backgroundColor:
-                              WidgetStatePropertyAll(AppColors.tealBlue),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
           ),
-
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: AppColors.gallery,
+                  borderRadius: BorderRadius.circular(20)),
+              clipBehavior: Clip.antiAlias,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: ListView.separated(
+                    itemBuilder: (context, index) => Column(
+                      children: [
+                        Text(provider.sentence[index].word),
+                        GridView.count(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                            crossAxisCount: 3,
+                          children: [
+                            for (int i = 0; i < provider.sentence[index].images.length; i++)
+                              Image(image: AssetImage(provider.sentence[index].images[i]),height: 80,width: 50,),
+                          ],
+                        )
+                      ],
+                    ),
+                    separatorBuilder:(context, index) =>  const SizedBox(height: 20,),
+                    itemCount: provider.words.length
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

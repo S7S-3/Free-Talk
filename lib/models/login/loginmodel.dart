@@ -1,21 +1,14 @@
 class LoginModel {
-  String? password;
-  String? userName;
-  String? token;
-  String? expiration;
-  String? message;
+  String password;
+  String email;
 
-  LoginModel({this.password, this.userName});
 
-  LoginModel.fromJson(Map<String, dynamic> json) {
-    token = json['token'];
-    expiration = json['expiration'];
-  }
+  LoginModel({required this.password,required this.email});
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['password'] = this.password;
-    data['userName'] = this.userName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['password'] = password;
+    data['email'] = email;
     return data;
   }
 }

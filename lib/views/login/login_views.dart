@@ -1,6 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:free_talk/models/login/loginmodel.dart';
 import 'package:free_talk/utils/widgets/custom_text_field.dart';
 import 'package:provider/provider.dart';
 import 'package:free_talk/utils/colors/color.dart';
@@ -54,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                 height: 28,
               ),
               CustomTextField(
-                  controller: provider.userNameController, label: 'username',obscureText: false,),
+                  controller: provider.emailController, label: 'email',obscureText: false,),
               const SizedBox(
                 height: 28,
               ),
@@ -91,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                       'If you don’t have an account',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Color(0xFF03045E),
+                        color: AppColors.tealBlue,
                         fontSize: 20,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w700,
@@ -105,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                         'Register',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Color(0xFF03045E),
+                            color: AppColors.tealBlue,
                             fontSize: 20,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w700,

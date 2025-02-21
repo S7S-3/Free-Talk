@@ -63,7 +63,7 @@ class AboutTheAppSection extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              provider.about[index].body,
+                              provider.about[index].value??'',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:free_talk/utils/constants/constants.dart';
 
 class DioHelper {

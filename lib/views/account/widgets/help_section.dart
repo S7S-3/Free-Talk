@@ -52,7 +52,7 @@ class HelpSection extends StatelessWidget {
                            width: 10,
                          ),
                          Text(
-                           provider.help[index].body,
+                           provider.help[index].value??'',
                            style: const TextStyle(
                              color: Colors.white,
                              fontSize: 16,

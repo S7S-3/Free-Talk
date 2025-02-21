@@ -38,7 +38,7 @@ class AccountSection extends StatelessWidget {
             child: ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 3,
+              itemCount: 2,
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.only(left: 20,right: 20,bottom:8 ),
                 child: Row(
@@ -58,7 +58,7 @@ class AccountSection extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          provider.account[index].body,
+                          provider.account[index].value??'',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,

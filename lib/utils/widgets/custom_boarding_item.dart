@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../colors/color.dart';
 
+// ignore: must_be_immutable
 class CustomBoardingItem extends StatelessWidget {
   CustomBoardingItem({super.key,required this.title,required this.subTitle});
   String title;

@@ -10,75 +10,73 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<HomeProvider>(context);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 12),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 8),
+          child: TextFormField(
+            controller: provider.searchController,
+            cursorColor: AppColors.tealBlue,
+            decoration: InputDecoration(
+              hintText: "Search",
+              fillColor: AppColors.gallery,
+              filled: true,
+              labelText: 'Search',
+              labelStyle: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: AppColors.gray,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(55),
+                borderSide: const BorderSide(
+                    color: AppColors.tealBlue,
+                    width: 3,
+                    strokeAlign: BorderSide.strokeAlignCenter),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(55),
+                borderSide: const BorderSide(
+                    color: AppColors.tealBlue,
+                    width: 3,
+                    strokeAlign: BorderSide.strokeAlignCenter),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(55),
+                borderSide: const BorderSide(
+                    color: AppColors.tealBlue,
+                    width: 3,
+                    strokeAlign: BorderSide.strokeAlignCenter),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(55),
+                borderSide: const BorderSide(
+                    color: AppColors.tealBlue,
+                    width: 3,
+                    strokeAlign: BorderSide.strokeAlignCenter),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Container(
               decoration: BoxDecoration(
                   color: AppColors.gallery,
                   borderRadius: BorderRadius.circular(20)),
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(18),
-                    child: TextFormField(
-                      controller: provider.searchController,
-                      cursorColor: AppColors.tealBlue,
-                      decoration: InputDecoration(
-                          fillColor: AppColors.gallery,
-                          filled: true,
-                          labelText: 'Search',
-                          labelStyle: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.gray,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                                color: AppColors.tealBlue,
-                                width: 3,
-                                strokeAlign: BorderSide.strokeAlignCenter),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                                color: AppColors.tealBlue,
-                                width: 3,
-                                strokeAlign: BorderSide.strokeAlignCenter),
-                          ),
-                          disabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                                color: AppColors.tealBlue,
-                                width: 3,
-                                strokeAlign: BorderSide.strokeAlignCenter),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                                color: AppColors.tealBlue,
-                                width: 3,
-                                strokeAlign: BorderSide.strokeAlignCenter),
-                          ),
-                      ),
-                    ),
-                  ),
+
                 ],
               ),
             ),
           ),
-          const SizedBox(
-            height: 25,
-          ),
-
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

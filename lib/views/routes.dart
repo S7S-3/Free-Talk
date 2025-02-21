@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:free_talk/providers/register/register_provider.dart';
 import 'package:free_talk/providers/splash/splash_providers.dart';
+import 'package:free_talk/views/chatbot/chat_bot_views.dart';
 import 'package:free_talk/views/register/register_views.dart';
 import 'package:free_talk/views/slpash/splash_views.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/chatbot/chat_bot_providers.dart';
 import '../providers/home/home_provider.dart';
 import '../providers/login/login_provider.dart';
 import '../providers/onboarding/onboarding_provider.dart';
@@ -18,6 +20,7 @@ class AppRoutes {
   static const String login = '/login';
   static const String splash = '/splash';
   static const String register = '/register';
+  static const String chatbot = '/chat_bot';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -32,7 +35,7 @@ class AppRoutes {
       case home:
         return MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider(
-            create: (_) => HomeProvider(),
+            create: (context) => HomeProvider(),
             child: const HomeScreen(),
           ),
         );
@@ -58,6 +61,12 @@ class AppRoutes {
             child: const RegisterViews(),
           ),
         );
+      case chatbot:
+        return MaterialPageRoute(
+            builder: (_) => ChangeNotifierProvider(
+              create: (_) => ChatBotProviders(),
+              child: const ChatBotViews(),
+            ));
 
       default:
         return MaterialPageRoute(
