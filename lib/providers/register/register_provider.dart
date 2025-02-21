@@ -59,8 +59,10 @@ class RegisterProviders extends ChangeNotifier {
     loading = true;
     notifyListeners();
     try {
-      login.email = emailController.text;
-      login.password = passwordController.text;
+      login= LoginModel(
+        email: emailController.text,
+        password: passwordController.text
+      );
       user = UserModel(
         profile: '0',
         name: userNameController.text,
