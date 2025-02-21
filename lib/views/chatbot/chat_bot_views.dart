@@ -53,8 +53,7 @@ class ChatBotViews extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView.separated(
-                    itemBuilder: (context, index) => provider.messageLoading && index == provider.messageHistory.length -1?
-                    LoadingAnimationWidget.waveDots(color: AppColors.tealBlue, size: 5):MessageItem(
+                    itemBuilder: (context, index) =>MessageItem(
                           time: provider.formatTime(provider.messageHistory[index].time),
                           message:provider.messageHistory[index].text,
                           isUser: provider.messageHistory[index].sender == 'user',
