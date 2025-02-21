@@ -59,6 +59,13 @@ class RegisterProviders extends ChangeNotifier {
     loading = true;
     notifyListeners();
     try {
+      login.email = emailController.text;
+      login.password = passwordController.text;
+      user = UserModel(
+        profile: '0',
+        name: userNameController.text,
+        email: emailController.text
+      );
       var uid = await AuthService().register(login);
         await UserService().setData(user, uid);
       Navigator.pop(context);
