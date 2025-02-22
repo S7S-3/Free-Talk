@@ -4,12 +4,13 @@ import '../colors/color.dart';
 
 // ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
-  CustomTextField({super.key, this.controller, this.validator, this.label,this.icon,required this.obscureText});
+  CustomTextField({super.key, this.controller, this.validator, this.label,this.icon,required this.obscureText, this.hintText});
   TextEditingController? controller;
   String? label;
   FormFieldValidator? validator;
   Widget? icon;
   bool? obscureText;
+  String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
       cursorColor: AppColors.tealBlue,
       validator: validator,
       decoration: InputDecoration(
+        hintText: hintText,
         suffixIcon: icon,
         fillColor: AppColors.gallery,
         filled: true,

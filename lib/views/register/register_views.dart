@@ -63,19 +63,20 @@ class RegisterViews extends StatelessWidget {
                   provider.currentPage == 1
                       ? CustomTextField(
                     obscureText: false,
-                          controller: provider.userNameController,
-                          label: 'username',
+                          controller: provider.firstNameController,
+                          hintText: 'First name',
                           validator: (value){
                             if(value.isEmpty){
-                              return 'please enter your username';
+                              return 'please enter your first name';
                             }
                             return null;
 
                           },
                   )
                       : CustomTextField(
+                    hintText: 'Password',
                     obscureText: provider.isPasswordVisible,
-                          controller: provider.passwordController, label: 'password',
+                          controller: provider.passwordController,
                     icon: IconButton(onPressed: (){provider.passwordVisible();}, icon: Icon(provider.isPasswordVisible? Icons.visibility_off : Icons.visibility)),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -96,9 +97,38 @@ class RegisterViews extends StatelessWidget {
                   ),
                   provider.currentPage == 1
                       ? CustomTextField(
+                    hintText: 'Second Name',
                     obscureText: false,
-                          controller: provider.emailController,
-                          label: 'email',
+                          controller: provider.secondNameController,
+                    validator: (value) {
+                      if(value.isEmpty){
+                        return 'please enter your first name';
+                      }
+                      return null;
+
+                    },
+                  )
+                      : CustomTextField(
+                    hintText: 'Confirm password',
+                    obscureText: provider.isConfirmPasswordVisible,
+                          controller: provider.confirmPasswordController,
+                    icon: IconButton(onPressed: (){
+                      provider.confirmPasswordVisible();
+                    }, icon: Icon(provider.isConfirmPasswordVisible? Icons.visibility_off : Icons.visibility)),
+                    validator: (value) {
+                            if(value!= provider.passwordController.text){
+                              return 'password not match';
+                            }
+                            return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 28,
+                  ),
+                  provider.currentPage == 1? CustomTextField(
+                    obscureText: false,
+                    controller: provider.emailController,
+                    hintText: 'Email',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Email is required';
@@ -107,21 +137,8 @@ class RegisterViews extends StatelessWidget {
                       }
                       return null;
                     },
-                  )
-                      : CustomTextField(
-                    obscureText: provider.isConfirmPasswordVisible,
-                          controller: provider.confirmPasswordController,
-                    icon: IconButton(onPressed: (){
-                      provider.confirmPasswordVisible();
-                    }, icon: Icon(provider.isConfirmPasswordVisible? Icons.visibility_off : Icons.visibility)),
-                      label: 'confirm password',
-                    validator: (value) {
-                            if(value!= provider.passwordController.text){
-                              return 'password not match';
-                            }
-                            return null;
-                    },
-                  ),
+                  ): const SizedBox(),
+
                   const Spacer(),
                   ConditionalBuilder(
                       condition: !provider.loading,

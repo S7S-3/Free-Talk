@@ -12,7 +12,8 @@ import '../../utils/widgets/custom_snackbar.dart';
 class RegisterProviders extends ChangeNotifier {
   int currentPage = 1;
   final emailController = TextEditingController();
-  final userNameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final secondNameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final String passwordPattern =
@@ -65,7 +66,7 @@ class RegisterProviders extends ChangeNotifier {
       );
       user = UserModel(
         profile: '0',
-        name: userNameController.text,
+        name: '${firstNameController.text} ${secondNameController.text}',
         email: emailController.text
       );
       var uid = await AuthService().register(login);

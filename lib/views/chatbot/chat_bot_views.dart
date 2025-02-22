@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:free_talk/utils/widgets/custom_text_field.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/chatbot/chat_bot_providers.dart';
 import '../../utils/colors/color.dart';
 import '../../utils/widgets/message_item.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 
 class ChatBotViews extends StatelessWidget {
